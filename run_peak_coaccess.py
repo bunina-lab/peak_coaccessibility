@@ -70,8 +70,16 @@ Examples:
     parser.add_argument(
         '-j', '--jobs',
         type=int,
-        default=2,
-        help='Number of parallel jobs default: 2'
+        default=-1,
+        help='Number of parallel jobs default: -1 (all)'
+    )
+
+    parser.add_argument(
+        '--organism',
+        type=str,
+        default='human',
+        help='Organism to select (defualt: human)',
+        choices=["human", "mouse", "drosophila"]
     )
     
     # Filtering options
@@ -162,7 +170,8 @@ def run_circe_analysis(adata, args):
     coaccess_df = compute_circe_peak_coaccess(
         atac_data=adata,
         njobs=args.jobs,
-        window_size=args.window
+        window_size=args.window,
+        organism=args.organism
         )
     
     return coaccess_df

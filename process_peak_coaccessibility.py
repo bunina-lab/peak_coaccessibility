@@ -100,7 +100,8 @@ def compute_cosine_sim_peak_coaccess(atac_data: ad.AnnData,
 def compute_circe_peak_coaccess(
     atac_data: ad.AnnData,
     njobs=-1,
-    window_size = 250000
+    window_size = 250000,
+    organism = 'human'
     ) -> pd.DataFrame:
     """
     Compute co-accessibility network using circe.
@@ -123,7 +124,7 @@ def compute_circe_peak_coaccess(
         unit_distance=1000,
         distance_constraint=None,
         s=None,
-        organism=None,
+        organism=organism,
         max_alpha_iteration=100,
         distance_parameter_convergence=1e-22,
         max_elements=200,
